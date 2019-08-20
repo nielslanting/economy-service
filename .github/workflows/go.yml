@@ -37,6 +37,7 @@ jobs:
         export PATH=$PATH:/usr/local/bin
         export PATH=$PATH:/usr/local/include
         export PATH=$PATH:$GOPATH
+        export PATH=$PATH:$GOPATH/bin
         export PATH=$PATH:$GOROOT/bin
         go get -v github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
         go get -v github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
