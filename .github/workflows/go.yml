@@ -31,7 +31,7 @@ jobs:
         unzip protoc-3.9.1-linux-x86_32.zip -d protoc3
         sudo mv protoc3/bin/* /usr/local/bin/
         sudo mv protoc3/include/* /usr/local/include/
-        export GOPATH=$GITHUB_WORKSPACE
+        export GOPATH=$HOME/go
         export PATH=$PATH:~/usr/local/bin
         export PATH=$PATH:~/usr/local/include
         export PATH=$PATH:/usr/local/bin
