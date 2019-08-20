@@ -92,6 +92,7 @@ jobs:
         echo "company_name: 'GameComponent'" >> ./cornerstone/config.yml
         echo "log_level: 'all'" >> config.yml
         echo "no_fork: no" >> config.yml
+        java -jar ./cornerstone/infraworld-cornerstone.jar
         ls ./cornerstone
         ls ./cornerstone/proto
         ls ./cornerstone/dist
