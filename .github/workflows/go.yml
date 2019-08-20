@@ -16,12 +16,16 @@ jobs:
         mkdir cornerstone\dist
         node sdk/ue4/convert.js --input api/proto/v1/economy_service.proto --output cornerstone/proto/economy_service.proto
         
+    - name: Print output file
+      run: |
+        cat cornerstone/proto/economy_service.proto
+        
     - name: SDK Unreal Generate 
       run: |
         cp ./sdk/ue4/config.yml ./cornerstone/config.yml
         cd ./cornerstone
         curl -OL https://github.com/GameComponent/infraworld-cornerstone/releases/download/1.0/infraworld-cornerstone.jar
-        java -jar ./infraworld-cornerstone.jar
+        java -jar infraworld-cornerstone.jar
         
 #   build:
 #     name: Build
