@@ -106,7 +106,7 @@ lines.forEach((line, index) => {
 	open -= line.split('}').length - 1;
 
 	if (open === 0 && startLine !== index) {
-		endLine = index;
+		endLine = index + 1;
 	}
 });
 
