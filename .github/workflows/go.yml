@@ -93,6 +93,9 @@ jobs:
         echo "log_level: 'all'" >> config.yml
         echo "no_fork: no" >> config.yml
         cd ./cornerstone && { java -jar ./infraworld-cornerstone.jar; cd -; }
+        echo "cornerstone"
         ls ./cornerstone
+        echo "cornerstone proto"
         ls ./cornerstone/proto
+        echo "cornerstone dist"
         ls ./cornerstone/dist
