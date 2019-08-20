@@ -73,13 +73,3 @@ jobs:
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        
-#     - uses: actions/checkout@master
-#     - name: Login to Registry
-#       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-#     - name: Publish to Registry
-#       uses: elgohr/Publish-Docker-Github-Action@master
-#       with:
-#         args: nielslanting/economy-service
-#     - name: Logout
-#       run: docker logout
