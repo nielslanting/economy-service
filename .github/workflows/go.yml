@@ -11,14 +11,14 @@ jobs:
                 
     - name: SDK Unreal Convert
       run: |
-        mkdir ./cornerstone
-        mkdir ./cornerstone/proto
-        mkdir ./cornerstone/dist
+        mkdir cornerstone
+        mkdir cornerstone/proto
+        mkdir cornerstone/dist
         echo "ls"
         ls
-        echo "pwd
+        echo "pwd"
         pwd
-        node ./sdk/ue4/convert.js --input ./api/proto/v1/economy_service.proto --output ./cornerstone/proto/economy_service.proto
+        node sdk/ue4/convert.js --input api/proto/v1/economy_service.proto --output cornerstone/proto/economy_service.proto
         
     - name: SDK Unreal Generate 
       run: |
