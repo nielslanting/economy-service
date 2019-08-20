@@ -12,8 +12,8 @@ jobs:
     - name: SDK Unreal Convert
       run: |
         mkdir cornerstone
-        mkdir cornerstone/proto
-        mkdir cornerstone/dist
+        mkdir cornerstone\proto
+        mkdir cornerstone\dist
         echo "ls"
         ls
         echo "pwd"
