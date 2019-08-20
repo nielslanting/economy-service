@@ -65,4 +65,4 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: "./bin/server/server_windows_x86_64.exe"
+        args: "./bin/server/server_windows_x86_64.exe application/octet-stream"
