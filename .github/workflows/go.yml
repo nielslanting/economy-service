@@ -61,6 +61,6 @@ jobs:
         make build
     - name: Release
       uses: "JasonEtco/upload-to-release@master"
-      secrets: ["GITHUB_TOKEN"]
       with:
         args: "./bin/"
+        secrets: ["GITHUB_TOKEN"]
