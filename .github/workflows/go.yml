@@ -22,22 +22,17 @@ jobs:
         
     - name: SDK Unreal Generate 
       run: |
-        cd ./cornerstone && { curl -OL https://github.com/GameComponent/infraworld-cornerstone/releases/download/1.0/infraworld-cornerstone.jar; cd -; }
-        echo "src_path: 'proto'" > ./cornerstone/config.yml
-        echo "dst_path: 'dist'" >> ./cornerstone/config.yml
-        echo "module_name: 'EconomyService'" >> ./cornerstone/config.yml
-        echo "precompiled_header: ''" >> ./cornerstone/config.yml
-        echo "wrappers_path: 'Wrappers'" >> ./cornerstone/config.yml
-        echo "company_name: 'GameComponent'" >> ./cornerstone/config.yml
+        cd ./cornerstone
+        curl -OL https://github.com/GameComponent/infraworld-cornerstone/releases/download/1.0/infraworld-cornerstone.jar
+        echo "src_path: 'proto'" > ./config.yml
+        echo "dst_path: 'dist'" >> ./config.yml
+        echo "module_name: 'EconomyService'" >> ./config.yml
+        echo "precompiled_header: ''" >> ./config.yml
+        echo "wrappers_path: 'Wrappers'" >> ./config.yml
+        echo "company_name: 'GameComponent'" >> ./config.yml
         echo "log_level: 'all'" >> config.yml
         echo "no_fork: no" >> config.yml
-        cd ./cornerstone && { java -jar ./infraworld-cornerstone.jar; cd -; }
-        echo "cornerstone"
-        ls ./cornerstone
-        echo "cornerstone proto"
-        ls ./cornerstone/proto
-        echo "cornerstone dist"
-        ls ./cornerstone/dist
+        java -jar ./infraworld-cornerstone.jar
         
 #   build:
 #     name: Build
