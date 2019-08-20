@@ -41,6 +41,17 @@ jobs:
         go get -v github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
         go get -v github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
         go get -v github.com/golang/protobuf/protoc-gen-go
+        echo "PATH"
+        echo $PATH
+        echo "GOPATH"
+        echo $GOPATH
+        ls $GOPATH
+        echo "GOPATH bin"
+        ls $GOPATH/bin
+        echo "GOROOT"
+        echo $GOROOT
+        echo "GOROOT bin"
+        ls $GOROOT/bin
         make api
         
     - name: Build
