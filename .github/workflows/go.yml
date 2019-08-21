@@ -46,7 +46,7 @@ jobs:
     - name: 
       run: |
         pwd
-        ./plugin/InfraworldRuntime/GrpcPrograms/Win64/protoc.exe -I ./cornerstone/dist --cpp_out=./plugin/EconomyService/Source/Private/Wrappers economy_service.proto
+        plugin\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\dist --cpp_out=plugin\EconomyService\Source\Private\Wrappers economy_service.proto
         
         
 #   build:
