@@ -43,7 +43,18 @@ jobs:
         curl -OL https://github.com/vizor-games/InfraworldRuntime/releases/download/battory/InfraworldRuntime_win64_x86_64.zip
         unzip InfraworldRuntime_win64_x86_64.zip
         
-    - name: 
+    - name: Print results
+      run: |
+        echo "ls plugin"
+        ls plugin
+        echo "ls plugin\EconomyService"
+        ls plugin\EconomyService
+        echo "ls cornerstone"
+        ls cornerstone
+        echo "ls cornerstone\dist"
+        ls cornerstone\dist
+        
+    - name: Generate C++ Wrappers
       run: |
         pwd
         plugin\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\dist --cpp_out=plugin\EconomyService\Source\Private\Wrappers economy_service.proto
