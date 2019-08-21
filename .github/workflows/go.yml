@@ -33,7 +33,7 @@ jobs:
         mkdir plugin
         cd ./plugin
         curl -OL https://github.com/vizor-games/InfraworldRuntime/releases/download/battory/InfraworldRuntime_win64_x86_64.zip
-        unzip InfraworldRuntime_win64_x86_64.zip .
+        unzip InfraworldRuntime_win64_x86_64.zip
         
 #   build:
 #     name: Build
