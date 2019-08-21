@@ -15,11 +15,11 @@ jobs:
         mkdir cornerstone
         mkdir cornerstone\proto
         mkdir cornerstone\dist
-        mkdir plugin
+        mkdir plugins
         cp -r sdk/ue4/EconomyService plugin
-        mkdir plugin\EconomyService\Source\Private\Generated
-        mkdir plugin\EconomyService\Source\Private\Wrappers
-        mkdir plugin\EconomyService\Source\Private\Wrappers\economy_service
+        mkdir plugins\EconomyService\Source\Private\Generated
+        mkdir plugins\EconomyService\Source\Private\Wrappers
+        mkdir plugins\EconomyService\Source\Private\Wrappers\economy_service
         
     - name: SDK Unreal Convert
       run: |
@@ -39,45 +39,32 @@ jobs:
     - name: Place generated files in the plugin
       run: |
         pwd
-        cp -r cornerstone/dist plugin/EconomyService/Source/Private/Generated
+        cp -r cornerstone/dist/economy_service plugin/EconomyService/Source/Private/Generated
         
     - name: Setup the runtime
       run: |
         pwd
-        mkdir plugin
-        cd ./plugin
+        cd ./plugins
         curl -OL https://github.com/vizor-games/InfraworldRuntime/releases/download/battory/InfraworldRuntime_win64_x86_64.zip
         unzip InfraworldRuntime_win64_x86_64.zip
-        
-    - name: Print results
-      run: |
-        echo "ls plugin"
-        ls plugin
-        echo "ls plugin\EconomyService"
-        ls plugin\EconomyService
-        echo "ls cornerstone"
-        ls cornerstone
-        echo "ls cornerstone\dist"
-        ls cornerstone\dist
         
     - name: Generate C++ Wrappers
       run: |
         pwd
-        plugin\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\proto --cpp_out=plugin\EconomyService\Source\Private\Wrappers\economy_service economy_service.proto
-        ls plugin\EconomyService\Source\Private\Wrappers
-        plugin\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\proto --plugin=protoc-gen-grpc=plugin\InfraworldRuntime\GrpcPrograms\Win64\grpc_cpp_plugin.exe --grpc_out=plugin\EconomyService\Source\Private\Wrappers economy_service.proto
+        plugins\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\proto --cpp_out=plugins\EconomyService\Source\Private\Wrappers\economy_service economy_service.proto
+        plugins\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\proto --plugin=protoc-gen-grpc=plugins\InfraworldRuntime\GrpcPrograms\Win64\grpc_cpp_plugin.exe --grpc_out=plugin\EconomyService\Source\Private\Wrappers economy_service.proto
         ls plugin\EconomyService\Source\Private\Wrappers\economy_service
         
-    - name: Generate Zip
-      run: |
-        pwd
-        jar -cMf ue4_plugin.zip plugin
+#     - name: Generate Zip
+#       run: |
+#         pwd
+#         jar -cMf ue4_plugin.zip plugin
         
     - name: Upload artifact
       uses: actions/upload-artifact@master
       with:
         name: ue4_plugin
-        path: ue4_plugin.zip
+        path: plugin
         
 #     - name: Release Unreal plugin
 #       uses: "JasonEtco/upload-to-release@master"
