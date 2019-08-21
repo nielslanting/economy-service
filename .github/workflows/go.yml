@@ -16,7 +16,7 @@ jobs:
         mkdir cornerstone\proto
         mkdir cornerstone\dist
         mkdir plugins
-        cp -r sdk/ue4/EconomyService plugin
+        cp -r sdk/ue4/EconomyService plugins
         mkdir plugins\EconomyService\Source\Private\Generated
         mkdir plugins\EconomyService\Source\Private\Generated\economy_service
         mkdir plugins\EconomyService\Source\Private\Wrappers
@@ -54,7 +54,7 @@ jobs:
       run: |
         pwd
         plugins\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\proto --cpp_out=plugins\EconomyService\Source\Private\Wrappers\economy_service economy_service.proto
-        plugins\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\proto --plugin=protoc-gen-grpc=plugins\InfraworldRuntime\GrpcPrograms\Win64\grpc_cpp_plugin.exe --grpc_out=plugins\EconomyService\Source\Private\Wrappers economy_service.proto
+        plugins\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\proto --plugin=protoc-gen-grpc=plugins\InfraworldRuntime\GrpcPrograms\Win64\grpc_cpp_plugin.exe --grpc_out=plugins\EconomyService\Source\Private\Wrappers\economy_service economy_service.proto
         
 #     - name: Generate Zip
 #       run: |
@@ -64,7 +64,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@master
       with:
-        name: ue4_plugin
+        name: ue4_plugins
         path: plugins
         
 #     - name: Release Unreal plugin
