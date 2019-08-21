@@ -57,11 +57,7 @@ jobs:
     - name: Fix generated code
       run: |
         node sdk/ue4/fix_includes.js --file plugins/EconomyService/Source/EconomyService/Private/Generated/economy_service/EconomyService.cpp
-        node sdk/ue4/fix_pragmas.js --file plugins/EconomyService/Source/EconomyService/Private/Wrappers/economy_service/economy_service.pb.cc
-        
-#     - name: Generate Zip
-#       run: |
-#         jar -cMf ue4_plugin.zip plugin
+        node sdk/ue4/fix_pragmas.js --file plugins/EconomyService/Source/EconomyService/Private/Wrappers/economy_service/economy_service.pb.cc   
         
     - name: Upload artifact
       uses: actions/upload-artifact@master
@@ -69,12 +65,16 @@ jobs:
         name: ue4_plugins
         path: plugins
         
-#     - name: Release Unreal plugin
-#       uses: "JasonEtco/upload-to-release@master"
-#       env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#       with:
-#         args: "./ue4_plugin.zip"
+    - name: Generate Zip
+      run: |
+        jar -cMf ue4_plugin.zip plugins
+        
+    - name: Release Unreal plugin
+      uses: "JasonEtco/upload-to-release@master"
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        args: "./ue4_plugin.zip"
 
 #   build:
 #     name: Build
