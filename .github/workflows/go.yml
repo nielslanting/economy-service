@@ -33,7 +33,12 @@ jobs:
         cp ./sdk/ue4/config.yml ./cornerstone/config.yml
         cd ./cornerstone
         curl -OL https://github.com/GameComponent/infraworld-cornerstone/releases/download/1.0/infraworld-cornerstone.jar
-        java -jar infraworld-cornerstone.jar        
+        java -jar infraworld-cornerstone.jar  
+        
+    - name: Place generated files in the plugin
+      run: |
+        pwd
+        cp -r cornerstone/dist plugin/EconomyService/Source/Private/Generated
         
     - name: Setup the runtime
       run: |
@@ -57,7 +62,7 @@ jobs:
     - name: Generate C++ Wrappers
       run: |
         pwd
-        plugin\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\dist --cpp_out=plugin\EconomyService\Source\Private\Wrappers economy_service.proto
+        ./plugin/InfraworldRuntime/GrpcPrograms/Win64/protoc.exe -I ./cornerstone/proto --cpp_out=./plugin/EconomyService/Source/Private/Wrappers economy_service.proto
         
         
 #   build:
