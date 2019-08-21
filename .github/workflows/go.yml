@@ -74,7 +74,7 @@ jobs:
         jar -cMf ue4_plugin.zip plugin
         
     - name: Upload artifact
-      - uses: actions/upload-artifact@master
+      uses: actions/upload-artifact@master
       with:
         name: ue4_plugin
         path: ue4_plugin.zip
