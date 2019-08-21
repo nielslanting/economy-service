@@ -6,34 +6,48 @@ jobs:
     runs-on: windows-latest
     steps:
     
-#     - name: Check out code
-#       uses: actions/checkout@v1  
-                
-#     - name: SDK Unreal Convert
-#       run: |
-#         mkdir cornerstone
-#         mkdir cornerstone\proto
-#         mkdir cornerstone\dist
-#         node sdk/ue4/convert.js --input api/proto/v1/economy_service.proto --output cornerstone/proto/economy_service.proto
+    - name: Check out code
+      uses: actions/checkout@v1  
+      
+    - name: Setup folders
+      run: |
+        pwd
+        mkdir cornerstone
+        mkdir cornerstone\proto
+        mkdir cornerstone\dist
+        mkdir plugin
+        cp -r sdk/ue4/EconomyService plugin
+        mkdir sdk\ue4\EconomyService\Source\Private\Generated
+        mkdir sdk\ue4\EconomyService\Source\Private\Wrappers
         
-#     - name: Print output file
-#       run: |
-#         cat cornerstone/proto/economy_service.proto
+    - name: SDK Unreal Convert
+      run: |
+        node sdk/ue4/convert.js --input api/proto/v1/economy_service.proto --output cornerstone/proto/economy_service.proto
         
-#     - name: SDK Unreal Generate 
-#       run: |
-#         cp ./sdk/ue4/config.yml ./cornerstone/config.yml
-#         cd ./cornerstone
-#         curl -OL https://github.com/GameComponent/infraworld-cornerstone/releases/download/1.0/infraworld-cornerstone.jar
-#         java -jar infraworld-cornerstone.jar        
+    - name: Print output file
+      run: |
+        cat cornerstone/proto/economy_service.proto
         
-    - name: 
+    - name: SDK Unreal Generate 
+      run: |
+        cp ./sdk/ue4/config.yml ./cornerstone/config.yml
+        cd ./cornerstone
+        curl -OL https://github.com/GameComponent/infraworld-cornerstone/releases/download/1.0/infraworld-cornerstone.jar
+        java -jar infraworld-cornerstone.jar        
+        
+    - name: Setup the runtime
       run: |
         pwd
         mkdir plugin
         cd ./plugin
         curl -OL https://github.com/vizor-games/InfraworldRuntime/releases/download/battory/InfraworldRuntime_win64_x86_64.zip
         unzip InfraworldRuntime_win64_x86_64.zip
+        
+    - name: 
+      run: |
+        pwd
+        ./plugin/InfraworldRuntime/GrpcPrograms/Win64/protoc.exe -I ./cornerstone/dist --cpp_out=./plugin/EconomyService/Source/Private/Wrappers economy_service.proto
+        
         
 #   build:
 #     name: Build
