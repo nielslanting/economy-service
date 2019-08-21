@@ -17,10 +17,10 @@ jobs:
         mkdir cornerstone\dist
         mkdir plugins
         cp -r sdk/ue4/EconomyService plugins
-        mkdir plugins\EconomyService\Source\Private\Generated
-        mkdir plugins\EconomyService\Source\Private\Generated\economy_service
-        mkdir plugins\EconomyService\Source\Private\Wrappers
-        mkdir plugins\EconomyService\Source\Private\Wrappers\economy_service
+        mkdir plugins\EconomyService\Source\EconomyService\Private\Generated
+        mkdir plugins\EconomyService\Source\EconomyService\Private\Generated\economy_service
+        mkdir plugins\EconomyService\Source\EconomyService\Private\Wrappers
+        mkdir plugins\EconomyService\Source\EconomyService\Private\Wrappers\economy_service
         
     - name: SDK Unreal Convert
       run: |
@@ -40,7 +40,7 @@ jobs:
     - name: Place generated files in the plugin
       run: |
         pwd
-        cp -r cornerstone/dist/economy_service plugins/EconomyService/Source/Private/Generated
+        cp -r cornerstone/dist/economy_service plugins/EconomyService/Source/EconomyService/Private/Generated
         
     - name: Setup the runtime
       run: |
@@ -53,8 +53,8 @@ jobs:
     - name: Generate C++ Wrappers
       run: |
         pwd
-        plugins\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\proto --cpp_out=plugins\EconomyService\Source\Private\Wrappers\economy_service economy_service.proto
-        plugins\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\proto --plugin=protoc-gen-grpc=plugins\InfraworldRuntime\GrpcPrograms\Win64\grpc_cpp_plugin.exe --grpc_out=plugins\EconomyService\Source\Private\Wrappers\economy_service economy_service.proto
+        plugins\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\proto --cpp_out=plugins\EconomyService\Source\EconomyService\Private\Wrappers\economy_service economy_service.proto
+        plugins\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\proto --plugin=protoc-gen-grpc=plugins\InfraworldRuntime\GrpcPrograms\Win64\grpc_cpp_plugin.exe --grpc_out=plugins\EconomyService\Source\EconomyService\Private\Wrappers\economy_service economy_service.proto
         
 #     - name: Generate Zip
 #       run: |
