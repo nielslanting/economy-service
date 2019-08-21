@@ -53,8 +53,7 @@ jobs:
       run: |
         pwd
         plugins\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\proto --cpp_out=plugins\EconomyService\Source\Private\Wrappers\economy_service economy_service.proto
-        plugins\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\proto --plugin=protoc-gen-grpc=plugins\InfraworldRuntime\GrpcPrograms\Win64\grpc_cpp_plugin.exe --grpc_out=plugin\EconomyService\Source\Private\Wrappers economy_service.proto
-        ls plugin\EconomyService\Source\Private\Wrappers\economy_service
+        plugins\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\proto --plugin=protoc-gen-grpc=plugins\InfraworldRuntime\GrpcPrograms\Win64\grpc_cpp_plugin.exe --grpc_out=plugins\EconomyService\Source\Private\Wrappers economy_service.proto
         
 #     - name: Generate Zip
 #       run: |
@@ -65,7 +64,7 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: ue4_plugin
-        path: plugin
+        path: plugins
         
 #     - name: Release Unreal plugin
 #       uses: "JasonEtco/upload-to-release@master"
