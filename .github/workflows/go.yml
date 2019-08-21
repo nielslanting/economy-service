@@ -39,7 +39,7 @@ jobs:
     - name: Place generated files in the plugin
       run: |
         pwd
-        cp -r cornerstone/dist/economy_service plugin/EconomyService/Source/Private/Generated
+        cp -r cornerstone/dist/economy_service plugins/EconomyService/Source/Private/Generated
         
     - name: Setup the runtime
       run: |
