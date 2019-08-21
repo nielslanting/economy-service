@@ -74,7 +74,7 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: "./ue4_plugin.zip"
+        args: "./ue4_plugin.zip application/zip"
 
 #   build:
 #     name: Build
