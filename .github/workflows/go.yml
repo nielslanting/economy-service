@@ -55,6 +55,12 @@ jobs:
         pwd
         plugins\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\proto --cpp_out=plugins\EconomyService\Source\EconomyService\Private\Wrappers\economy_service economy_service.proto
         plugins\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\proto --plugin=protoc-gen-grpc=plugins\InfraworldRuntime\GrpcPrograms\Win64\grpc_cpp_plugin.exe --grpc_out=plugins\EconomyService\Source\EconomyService\Private\Wrappers\economy_service economy_service.proto
+
+    - name: Fix generated code
+      run: |
+        pwd
+        node sdk/ue4/fix_includes.js --file plugins\EconomyService\Source\EconomyService\Private\Generated\economy_service\EconomyService.cpp
+        node sdk/ue4/fix_pragmas.js --file plugins\EconomyService\Source\EconomyService\Private\Wrappers\economy_service\economy_service.pb.cc
         
 #     - name: Generate Zip
 #       run: |
