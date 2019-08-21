@@ -63,8 +63,9 @@ jobs:
       run: |
         pwd
         plugin\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\proto --cpp_out=plugin\EconomyService\Source\Private\Wrappers economy_service.proto
-        
-        
+        ls plugin\EconomyService\Source\Private\Wrappers
+        plugin\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\proto --plugin=protoc-gen-grpc=plugin\InfraworldRuntime\GrpcPrograms\Win64\grpc_cpp_plugin.exe --grpc_out=plugin\EconomyService\Source\Private\Wrappers economy_service.proto
+        ls plugin\EconomyService\Source\Private\Wrappers
 #   build:
 #     name: Build
 #     runs-on: ubuntu-latest
