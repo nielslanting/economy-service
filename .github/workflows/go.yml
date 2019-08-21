@@ -19,6 +19,7 @@ jobs:
         cp -r sdk/ue4/EconomyService plugin
         mkdir plugin\EconomyService\Source\Private\Generated
         mkdir plugin\EconomyService\Source\Private\Wrappers
+        mkdir plugin\EconomyService\Source\Private\Wrappers\economy_service
         
     - name: SDK Unreal Convert
       run: |
@@ -62,10 +63,23 @@ jobs:
     - name: Generate C++ Wrappers
       run: |
         pwd
-        plugin\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\proto --cpp_out=plugin\EconomyService\Source\Private\Wrappers economy_service.proto
+        plugin\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\proto --cpp_out=plugin\EconomyService\Source\Private\Wrappers\economy_service economy_service.proto
         ls plugin\EconomyService\Source\Private\Wrappers
         plugin\InfraworldRuntime\GrpcPrograms\Win64\protoc.exe -I cornerstone\proto --plugin=protoc-gen-grpc=plugin\InfraworldRuntime\GrpcPrograms\Win64\grpc_cpp_plugin.exe --grpc_out=plugin\EconomyService\Source\Private\Wrappers economy_service.proto
-        ls plugin\EconomyService\Source\Private\Wrappers
+        ls plugin\EconomyService\Source\Private\Wrappers\economy_service
+        
+    - name: Generate Zip
+      run: |
+        pwd
+        zip -r ue4_plugin.zip plugin
+        
+    - name: Release Unreal plugin
+      uses: "JasonEtco/upload-to-release@master"
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        args: "./ue4_plugin.zip"
+
 #   build:
 #     name: Build
 #     runs-on: ubuntu-latest
