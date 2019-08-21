@@ -17,8 +17,8 @@ jobs:
         mkdir cornerstone\dist
         mkdir plugin
         cp -r sdk/ue4/EconomyService plugin
-        mkdir sdk\ue4\EconomyService\Source\Private\Generated
-        mkdir sdk\ue4\EconomyService\Source\Private\Wrappers
+        mkdir plugin\EconomyService\Source\Private\Generated
+        mkdir plugin\EconomyService\Source\Private\Wrappers
         
     - name: SDK Unreal Convert
       run: |
