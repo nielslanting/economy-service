@@ -18,6 +18,7 @@ jobs:
         mkdir plugins
         cp -r sdk/ue4/EconomyService plugin
         mkdir plugins\EconomyService\Source\Private\Generated
+        mkdir plugins\EconomyService\Source\Private\Generated\economy_service
         mkdir plugins\EconomyService\Source\Private\Wrappers
         mkdir plugins\EconomyService\Source\Private\Wrappers\economy_service
         
